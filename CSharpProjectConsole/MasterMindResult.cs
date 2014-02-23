@@ -18,9 +18,15 @@ namespace CSharpProjectConsole
             get;
             private set;
         }
+        public bool EndOfGame
+        {
+            get;
+            private set;
+        }
         public MasterMindResult(int ColorMatch, int PosMatch) {
             this.ColorMatch = ColorMatch;
             this.PosMatch = PosMatch;
+            this.EndOfGame = EndOfGame;
         }
 
 

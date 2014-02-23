@@ -13,7 +13,7 @@ namespace CSharpProjectConsole
         static void Main(string[] args)
         {
             MasterMindGame game = new MasterMindGame(20, 4);
-            for (int i = 0; i < 20; i++) {
+            while (!game.GameFinished) {
                 game.SetColor(0, (Color)int.Parse(Console.ReadLine()));
                 game.SetColor(1, (Color)int.Parse(Console.ReadLine()));
                 game.SetColor(2, (Color)int.Parse(Console.ReadLine()));
@@ -23,6 +23,13 @@ namespace CSharpProjectConsole
                 Console.WriteLine("colormatch: " + result.ColorMatch);
                 Console.WriteLine(game.GetDebugInfo());
             }
+            if (game.GameWon) {
+                Console.WriteLine("You have Won");
+            }
+            else{
+                Console.WriteLine("You have lost");
+            }
+
             Console.ReadKey(true);
 
 
