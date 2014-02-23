@@ -60,18 +60,16 @@ namespace CSharpProjectConsole
                 if ((SecretRow.GetRow(i) == GetRow(i)))
                 {
                     PosMatch++;
-                    ColorMatch++;
                 }
-                else
-                {
-                    for (int r = 0; r < colors.Length; r++)
-                        if (!ColorInArray(MatchingColors, GetRow(i)) && SecretRow.GetRow(i) == GetRow(r))
-                        {
-                            ColorMatch++;
-                            MatchingColors[LastMatchIndex] = SecretRow.GetRow(i);
-                            LastMatchIndex++;
-                        }
-                }
+
+                for (int r = 0; r < colors.Length; r++)
+                    if (!ColorInArray(MatchingColors, GetRow(i)) && SecretRow.GetRow(i) == GetRow(r))
+                    {
+                        ColorMatch++;
+                        MatchingColors[LastMatchIndex] = SecretRow.GetRow(i);
+                        LastMatchIndex++;
+                    }
+
             }
             return new MasterMindResult(ColorMatch, PosMatch);
         }
