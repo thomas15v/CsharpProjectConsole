@@ -36,6 +36,10 @@ namespace CSharpProjectConsole
             return colors[index];
         }
 
+        public void SetColor(int index, Color color) {
+            colors[index] = color;
+        }
+
         public override bool Equals(object obj)
         {
             MasterMindRow OtherRow = (MasterMindRow)obj;
