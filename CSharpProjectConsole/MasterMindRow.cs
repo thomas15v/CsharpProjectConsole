@@ -6,23 +6,22 @@ using System.Threading.Tasks;
 
 namespace CSharpProjectConsole
 {
-    class MasterMindRow
+    public enum Color
+    {
+        red = 0,
+        green = 1,
+        blue = 2,
+        yellow = 3,
+        brown = 4,
+        orange = 5,
+        black = 6,
+        white = 7,
+        none = 8
+    }
+    
+   public class MasterMindRow
     {
         Color[] colors;
-
-        enum Color { 
-            red=0,
-            green=1,
-            blue=2,
-            yellow=3,
-            brown=4,
-            orange=5,
-            black=6,
-            white=7,
-            none=8
-        }
-
-        
 
         public MasterMindRow(int RowLength) {
             colors = new Color[RowLength];
