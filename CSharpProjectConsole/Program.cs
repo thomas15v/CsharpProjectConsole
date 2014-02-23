@@ -10,6 +10,19 @@ namespace CSharpProjectConsole
     {
         static void Main(string[] args)
         {
+            MasterMindRow row1 = new MasterMindRow(4);
+            MasterMindRow row2 = new MasterMindRow(4);
+
+            if (row1 == row2)
+            {
+                Console.WriteLine("match");
+            }
+            else {
+                Console.WriteLine("no match");
+            }
+
+
+            Console.ReadKey(true);
         }
     }
 }
