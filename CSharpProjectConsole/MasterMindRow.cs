@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpProjectConsole
 {
+
     public enum Color
     {
         red = 1,
@@ -18,6 +19,7 @@ namespace CSharpProjectConsole
         white = 8,
         none = 0
     }
+
     public class MasterMindRow
     {
         private Random random = new Random();
@@ -38,7 +40,7 @@ namespace CSharpProjectConsole
             for (int i = 0; i < colors.Length; i++) SetColor(i, (Color)random.Next(1, 9));
         }
 
-        public Color GetRow(int index)
+        public Color GetColor(int index)
         {
             return colors[index];
         }
@@ -48,26 +50,28 @@ namespace CSharpProjectConsole
             colors[index] = color;
         }
 
+        private Color[] GetRow() {
+            return colors;
+        }
+
         public MasterMindResult CompareWithSecretRow(MasterMindRow SecretRow)
         {
             int ColorMatch = 0;
             int PosMatch = 0;
-            int LastMatchIndex = 0;
-            Color[] MatchingColors = new Color[colors.Length];
+            Color[] RowToCompare = SecretRow.GetRow();
 
             for (int i = 0; i < colors.Length; i++)
             {
-                if ((SecretRow.GetRow(i) == GetRow(i)))
+                if ((SecretRow.GetColor(i) == GetColor(i)))
                 {
                     PosMatch++;
                 }
 
                 for (int r = 0; r < colors.Length; r++)
-                    if (!ColorInArray(MatchingColors, GetRow(i)) && SecretRow.GetRow(i) == GetRow(r))
+                    if (ColorInArray(RowToCompare, GetColor(i)))
                     {
                         ColorMatch++;
-                        MatchingColors[LastMatchIndex] = SecretRow.GetRow(i);
-                        LastMatchIndex++;
+                        RemoveColorInArray(RowToCompare, GetColor(i));
                     }
 
             }
@@ -78,6 +82,12 @@ namespace CSharpProjectConsole
         {
             foreach (Color Colorin in colors) if (Colorin == color) return true;
             return false;
+        }
+
+        private void RemoveColorInArray(Color[] RowToCompare, Color color) {
+            for (int i = 0; i < RowToCompare.Length; i++) {
+                if (RowToCompare[i] == color) RowToCompare[i] = Color.none;
+            }
         }
 
         public override string ToString()
@@ -108,7 +118,7 @@ namespace CSharpProjectConsole
             MasterMindRow OtherRow = (MasterMindRow)obj;
             for (int i = 0; i < colors.Length; i++)
             {
-                if (OtherRow.GetRow(i) != GetRow(i)) return false;
+                if (OtherRow.GetColor(i) != GetColor(i)) return false;
 
             }
             return true;
