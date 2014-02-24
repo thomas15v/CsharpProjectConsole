@@ -58,7 +58,7 @@ namespace CSharpProjectConsole
         {
             int ColorMatch = 0;
             int PosMatch = 0;
-            Color[] RowToCompare = SecretRow.GetRow();
+            Color[] RowToCompare = (Color[]) SecretRow.GetRow().Clone();
 
             for (int i = 0; i < colors.Length; i++)
             {
